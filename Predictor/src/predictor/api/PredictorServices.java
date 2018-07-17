@@ -5,6 +5,7 @@
  */
 package predictor.api;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import predictor.api.model.IParticipant;
 import predictor.api.model.IResult;
@@ -15,5 +16,5 @@ import predictor.api.model.IResult;
  */
 public interface PredictorServices {
     
-    IResult predictResult(List<IParticipant> participants, List<IResult> pastResults);
+    IResult predictResult(List<IParticipant> participants, List<IResult> pastResults, LocalDateTime eventDateTime);
 }

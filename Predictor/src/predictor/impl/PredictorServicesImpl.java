@@ -5,10 +5,17 @@
  */
 package predictor.impl;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import predictor.api.PredictorServices;
 import predictor.api.model.IParticipant;
 import predictor.api.model.IResult;
+import predictor.impl.model.Contender;
+import predictor.impl.model.PreviousScore;
+import predictor.impl.model.Result;
 import predictor.impl.scorepredictor.ScorePredictorServices;
 import predictor.impl.scorepredictor.impl.ContenderAverageScorePredictorServices;
 
@@ -25,7 +32,39 @@ public class PredictorServicesImpl implements PredictorServices{
     }
 
     @Override
-    public IResult predictResult(List<IParticipant> participants, List<IResult> pastResults) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public IResult predictResult(List<IParticipant> participants, List<IResult> pastResults, LocalDateTime eventDateTime) {
+        Map<IParticipant, Double> participantScores = new HashMap<>();
+        
+        for(IParticipant participant:participants){
+            double participantScore = predictParticipantResult(participant, pastResults, eventDateTime);
+            participantScores.put(participant, participantScore);
+        }
+        
+        return new Result(eventDateTime, participantScores);
+    }
+    
+    
+    private double predictParticipantResult(IParticipant participant, List<IResult> pastResults, LocalDateTime eventDateTime){
+        Contender contender = this.createContender(participant, pastResults);
+        
+        double averageResult = this.contenderAverageScorePredictorServices.predictParticipantScore(contender, eventDateTime);
+        
+        return averageResult;
+    }
+    
+    private Contender createContender(IParticipant participant, List<IResult> pastResults){
+        long id = participant.getId();
+        String name = participant.getName();
+        List<PreviousScore> previousScores = new ArrayList<>();
+        for(IResult result : pastResults){
+            for(IParticipant aParticipant: result.getParticipantScores().keySet()){
+                if(aParticipant == participant){
+                    double participantScore = result.getParticipantScores().get(participant);
+                    previousScores.add(new PreviousScore(result.getCompetitionTime(), participantScore));
+                }
+            }
+        }
+        
+        return new Contender(id, name, previousScores);
     }
 }

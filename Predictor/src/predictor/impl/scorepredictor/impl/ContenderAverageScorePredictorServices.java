@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import predictor.impl.scorepredictor.ScorePredictorServices;
 
 import predictor.impl.model.Contender;
+import predictor.impl.model.PreviousScore;
 /**
  *
  * @author Clément
@@ -18,8 +19,14 @@ public class ContenderAverageScorePredictorServices implements ScorePredictorSer
 
     @Override
     public double predictParticipantScore(Contender contender, LocalDateTime competitionDate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        double sumOfPreviousScores = 0;
+        for (PreviousScore contenderScore: contender.getPreviousScores()){
+            sumOfPreviousScores += contenderScore.getScore();
+        }
+        
+        double contenderAverageScore = sumOfPreviousScores / contender.getPreviousScores().size();
+        
+        return contenderAverageScore;
     }
-
-    
 }
