@@ -5,8 +5,8 @@
  */
 package predictor.impl.model;
 
-import java.time.LocalDateTime;
 import java.util.Map;
+import predictor.api.model.IEventContext;
 import predictor.api.model.IParticipant;
 import predictor.api.model.IResult;
 
@@ -16,18 +16,18 @@ import predictor.api.model.IResult;
  */
 public class Result implements IResult{
     
-    private final LocalDateTime localDateTime;
+    private final IEventContext eventContext;
     
     private final Map<IParticipant, Double> participantScores;
     
-    public Result(LocalDateTime localDateTime, Map<IParticipant, Double> participantScores){
-        this.localDateTime = localDateTime;
+    public Result(IEventContext eventContext, Map<IParticipant, Double> participantScores){
+        this.eventContext = eventContext;
         this.participantScores = participantScores;
     }
 
     @Override
-    public LocalDateTime getCompetitionTime() {
-        return this.localDateTime;    
+    public IEventContext getEventContext() {
+        return this.eventContext;    
     }
 
     @Override

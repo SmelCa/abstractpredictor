@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Clément/Documents/NetBeansProjects/Predictor/src/predictor/impl/model/PreviousScore.java</file>
-            <file>file:/C:/Users/Clément/Documents/NetBeansProjects/Predictor/src/predictor/impl/scorepredictor/impl/ContenderAverageScorePredictorServices.java</file>
-            <file>file:/C:/Users/Clément/Documents/NetBeansProjects/Predictor/src/predictor/impl/scorepredictor/model/IContender.java</file>
-            <file>file:/C:/Users/Clément/Documents/NetBeansProjects/Predictor/src/predictor/impl/model/Contender.java</file>
-            <file>file:/C:/Users/Clément/Documents/NetBeansProjects/Predictor/src/predictor/impl/scorepredictor/model/IPreviousScore.java</file>
-            <file>file:/C:/Users/Clément/Documents/NetBeansProjects/Predictor/src/predictor/impl/model/Result.java</file>
+            <file>file:/C:/Users/Clément/abstractpredictor/Predictor/src/predictor/api/PredictorServices.java</file>
+            <file>file:/C:/Users/Clément/abstractpredictor/Predictor/src/predictor/impl/PredictorServicesImpl.java</file>
+            <file>file:/C:/Users/Clément/abstractpredictor/Predictor/src/predictor/impl/scorepredictor/impl/ContenderAverageScorePredictorServices.java</file>
         </group>
     </open-files>
 </project-private>

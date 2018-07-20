@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import predictor.api.PredictorServices;
+import predictor.api.model.IEventContext;
 import predictor.api.model.IParticipant;
 import predictor.api.model.IResult;
 import predictor.impl.model.Contender;
@@ -32,22 +33,22 @@ public class PredictorServicesImpl implements PredictorServices{
     }
 
     @Override
-    public IResult predictResult(List<IParticipant> participants, List<IResult> pastResults, LocalDateTime eventDateTime) {
+    public IResult predictResult(List<IParticipant> participants, List<IResult> pastResults, IEventContext eventContext) {
         Map<IParticipant, Double> participantScores = new HashMap<>();
         
         for(IParticipant participant:participants){
-            double participantScore = predictParticipantResult(participant, pastResults, eventDateTime);
+            double participantScore = predictParticipantResult(participant, pastResults, eventContext);
             participantScores.put(participant, participantScore);
         }
         
-        return new Result(eventDateTime, participantScores);
+        return new Result(eventContext, participantScores);
     }
     
     
-    private double predictParticipantResult(IParticipant participant, List<IResult> pastResults, LocalDateTime eventDateTime){
+    private double predictParticipantResult(IParticipant participant, List<IResult> pastResults, IEventContext eventContext){
         Contender contender = this.createContender(participant, pastResults);
         
-        double averageResult = this.contenderAverageScorePredictorServices.predictParticipantScore(contender, eventDateTime);
+        double averageResult = this.contenderAverageScorePredictorServices.predictParticipantScore(contender, eventContext.eventDateTime());
         
         return averageResult;
     }
@@ -60,7 +61,7 @@ public class PredictorServicesImpl implements PredictorServices{
             for(IParticipant aParticipant: result.getParticipantScores().keySet()){
                 if(aParticipant == participant){
                     double participantScore = result.getParticipantScores().get(participant);
-                    previousScores.add(new PreviousScore(result.getCompetitionTime(), participantScore));
+                    previousScores.add(new PreviousScore(result.getEventContext().eventDateTime(), participantScore));
                 }
             }
         }

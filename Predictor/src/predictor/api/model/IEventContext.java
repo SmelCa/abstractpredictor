@@ -5,15 +5,16 @@
  */
 package predictor.api.model;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
  *
  * @author Clément
  */
-public interface IResult {
+public interface IEventContext {
     
-    IEventContext getEventContext();
+    LocalDateTime eventDateTime();
     
-    Map<IParticipant, Double> getParticipantScores();
+    Map<String, String> eventAttributes();
 }

@@ -5,15 +5,15 @@
  */
 package predictor.api.model;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  *
  * @author Clément
  */
-public interface IResult {
+public interface IEventAttributeValues {
     
-    IEventContext getEventContext();
+    String attributeName();
     
-    Map<IParticipant, Double> getParticipantScores();
+    List<String> possibleValues();
 }
