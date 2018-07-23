@@ -1,11 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *   Copyright(c) Clement Tourne.  All Rights Reserved. 
+ *   This software is the proprietary information of Clement Tourne.
  */
 package predictor.impl;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,10 +18,6 @@ import predictor.impl.model.Result;
 import predictor.impl.scorepredictor.ScorePredictorServices;
 import predictor.impl.scorepredictor.impl.ContenderAverageScorePredictorServices;
 
-/**
- *
- * @author Clément
- */
 public class PredictorServicesImpl implements PredictorServices{
     
     private final ScorePredictorServices contenderAverageScorePredictorServices;
