@@ -3,3 +3,4 @@ Predictor/nbproject/licenseheader.txt
 Predictor/nbproject/private/config.properties
 Predictor/nbproject/private/private.properties
 Predictor/nbproject/project.properties
+*.class
