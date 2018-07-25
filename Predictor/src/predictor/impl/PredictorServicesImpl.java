@@ -16,14 +16,14 @@ import predictor.impl.model.Contender;
 import predictor.impl.model.PreviousScore;
 import predictor.impl.model.Result;
 import predictor.impl.scorepredictor.ScorePredictorServices;
-import predictor.impl.scorepredictor.impl.ContenderAverageScorePredictorServices;
+
 
 public class PredictorServicesImpl implements PredictorServices{
     
     private final ScorePredictorServices contenderAverageScorePredictorServices;
     
-    public PredictorServicesImpl(){
-        this.contenderAverageScorePredictorServices = new ContenderAverageScorePredictorServices();
+    public PredictorServicesImpl(ScorePredictorServices contenderAverageScorePredictorServices){
+        this.contenderAverageScorePredictorServices = contenderAverageScorePredictorServices;
     }
 
     @Override
