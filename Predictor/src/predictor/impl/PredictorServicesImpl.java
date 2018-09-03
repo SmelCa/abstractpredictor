@@ -9,14 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import predictor.api.PredictorServices;
-import predictor.api.model.IEventContext;
-import predictor.api.model.IParticipant;
-import predictor.api.model.IResult;
-import predictor.impl.model.Contender;
-import predictor.impl.model.PreviousScore;
-import predictor.impl.model.Result;
+import predictor.impl.scorepredictor.model.Contender;
+import predictor.impl.scorepredictor.model.PreviousScore;
 import predictor.impl.scorepredictor.ScorePredictorServices;
-
+import predictor.api.model.EventContext;
+import predictor.api.model.Participant;
+import predictor.api.model.Result;
 
 public class PredictorServicesImpl implements PredictorServices{
     
@@ -27,10 +25,10 @@ public class PredictorServicesImpl implements PredictorServices{
     }
 
     @Override
-    public IResult predictResult(List<IParticipant> participants, List<IResult> pastResults, IEventContext eventContext) {
-        Map<IParticipant, Double> participantScores = new HashMap<>();
+    public Result predictResult(List<Participant> participants, List<Result> pastResults, EventContext eventContext) {
+        Map<Participant, Double> participantScores = new HashMap<>();
         
-        for(IParticipant participant:participants){
+        for(Participant participant:participants){
             double participantScore = predictParticipantResult(participant, pastResults, eventContext);
             participantScores.put(participant, participantScore);
         }
@@ -39,23 +37,23 @@ public class PredictorServicesImpl implements PredictorServices{
     }
     
     
-    private double predictParticipantResult(IParticipant participant, List<IResult> pastResults, IEventContext eventContext){
+    private double predictParticipantResult(Participant participant, List<Result> pastResults, EventContext eventContext){
         Contender contender = this.createContender(participant, pastResults);
         
-        double averageResult = this.contenderAverageScorePredictorServices.predictParticipantScore(contender, eventContext.eventDateTime());
+        double averageResult = this.contenderAverageScorePredictorServices.predictParticipantScore(contender, eventContext.getEventDateTime());
         
         return averageResult;
     }
     
-    private Contender createContender(IParticipant participant, List<IResult> pastResults){
+    private Contender createContender(Participant participant, List<Result> pastResults){
         long id = participant.getId();
         String name = participant.getName();
         List<PreviousScore> previousScores = new ArrayList<>();
-        for(IResult result : pastResults){
-            for(IParticipant aParticipant: result.getParticipantScores().keySet()){
+        for(Result result : pastResults){
+            for(Participant aParticipant: result.getParticipantScores().keySet()){
                 if(aParticipant == participant){
                     double participantScore = result.getParticipantScores().get(participant);
-                    previousScores.add(new PreviousScore(result.getEventContext().eventDateTime(), participantScore));
+                    previousScores.add(new PreviousScore(result.getEventContext().getEventDateTime(), participantScore));
                 }
             }
         }

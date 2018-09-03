@@ -5,7 +5,7 @@
 package predictor.impl.scorepredictor;
 
 import java.time.LocalDateTime;
-import predictor.impl.model.Contender;
+import predictor.impl.scorepredictor.model.Contender;
 
 public interface ScorePredictorServices {
     

@@ -2,12 +2,11 @@
  *   Copyright(c) Clement Tourne.  All Rights Reserved. 
  *   This software is the proprietary information of Clement Tourne.
  */
-package predictor.impl.model;
+package predictor.impl.scorepredictor.model;
 
 import java.util.List;
-import predictor.impl.scorepredictor.model.IContender;
 
-public class Contender implements IContender{
+public class Contender{
     
     private final long id;
     
@@ -21,17 +20,14 @@ public class Contender implements IContender{
         this.previousScores = previousScores;
     }
 
-    @Override
     public long getId() {
         return id;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public List<PreviousScore> getPreviousScores() {
         return previousScores;
     }

@@ -5,9 +5,9 @@
 package predictor.api;
 
 import java.util.List;
-import predictor.api.model.IEventContext;
-import predictor.api.model.IParticipant;
-import predictor.api.model.IResult;
+import predictor.api.model.EventContext;
+import predictor.api.model.Participant;
+import predictor.api.model.Result;
 
 public interface PredictorServices {
     
@@ -26,5 +26,5 @@ public interface PredictorServices {
      *      the list of context parameters of the event
      * @return the result, giving expected score for each participant
      */
-    IResult predictResult(List<IParticipant> participants, List<IResult> pastResults, IEventContext eventContext);
+    Result predictResult(List<Participant> participants, List<Result> pastResults, EventContext eventContext);
 }

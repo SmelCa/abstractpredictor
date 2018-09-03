@@ -2,12 +2,11 @@
  *   Copyright(c) Clement Tourne.  All Rights Reserved. 
  *   This software is the proprietary information of Clement Tourne.
  */
-package predictor.impl.model;
+package predictor.impl.scorepredictor.model;
 
 import java.time.LocalDateTime;
-import predictor.impl.scorepredictor.model.IPreviousScore;
 
-public class PreviousScore implements IPreviousScore{
+public class PreviousScore{
     final LocalDateTime competitionTime;
 
     final double score;

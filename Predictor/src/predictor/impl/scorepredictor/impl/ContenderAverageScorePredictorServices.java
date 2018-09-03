@@ -7,9 +7,8 @@ package predictor.impl.scorepredictor.impl;
 
 import java.time.LocalDateTime;
 import predictor.impl.scorepredictor.ScorePredictorServices;
-
-import predictor.impl.model.Contender;
-import predictor.impl.model.PreviousScore;
+import predictor.impl.scorepredictor.model.Contender;
+import predictor.impl.scorepredictor.model.PreviousScore;
 
 public class ContenderAverageScorePredictorServices implements ScorePredictorServices{
 
