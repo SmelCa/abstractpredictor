@@ -2,7 +2,7 @@
  *   Copyright(c) Clement Tourne.  All Rights Reserved. 
  *   This software is the proprietary information of Clement Tourne.
  */
-package predictor.impl.scorepredictor.model;
+package predictor.impl.scorepredictor.impl.predictoragent.model;
 
 import java.util.List;
 
