@@ -7,10 +7,6 @@ package predictor.impl.predictionmodelmanager;
 import predictor.impl.model.PredictorAgentIdentifier;
 import predictor.impl.model.PredictorAgentParameters;
 
-/**
- *
- * @author Clément
- */
 public interface PredictionModelManagerServices {
     
     /**
